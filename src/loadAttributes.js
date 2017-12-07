@@ -20,7 +20,7 @@ import getItemType from './helpers/getItemType';
 
 const getItemOnPress = (item: Object, entityMap: Object, navigate: Function) => {
   if (item.key !== undefined) {
-    return () => { navigate(entityMap[item.key].data.url); };
+    return () => { navigate(entityMap[item.key]); };
   }
   return undefined;
 };
@@ -44,7 +44,7 @@ const loadAttributes = (params: ParamsType): any => {
     navigate,
   } = params;
 
-  const defaultNavigationFn = (url: string) => { Linking.openURL(url); };
+  const defaultNavigationFn = (item) => { Linking.openURL(item.data.url); };
   const navigateFunction = navigate || defaultNavigationFn;
   const elementList = [];
   let attributes = inlineStyles ? inlineStyles.concat(entityRanges) : entityRanges;
